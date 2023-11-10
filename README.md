@@ -18,7 +18,8 @@
 
 | 날짜 | 진행 상황 | 
 | -------- | -------- |
-| 23.11.11(토)     | Stack(스택) |
+| 23.11.11(토)     | Stack(스택)</br>Stack Interview |
 
 ## 📖 스터디 리스트
 - [231111 Stack](https://github.com/devKobe24/DataStructure/blob/main/contents/231111.md)
+  - [231111 Stack Interview](https://github.com/devKobe24/DataStructure/blob/main/contents/231111-stack-interview.md)
