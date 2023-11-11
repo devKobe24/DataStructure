@@ -18,7 +18,7 @@
 
 | 날짜 | 진행 상황 | 
 | -------- | -------- |
-| 23.11.11(토)     | Stack(스택)</br>Stack Interview |
+| 23.11.11(토)     | Stack(스택)</br>Stack Interview</br>Stack Challenge</br> |
 
 ## 📖 스터디 리스트
 
