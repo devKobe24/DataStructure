@@ -28,3 +28,4 @@
 - [231111 Stack Challenge](https://github.com/devKobe24/DataStructure/blob/main/contents/231111-stack-challenge.md)
 
 ### Linked List
+- [231112 Linked list(1)](https://github.com/devKobe24/DataStructure/blob/main/contents/231112-linkedlist(1).md)
