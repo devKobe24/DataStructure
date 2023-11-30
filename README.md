@@ -19,13 +19,14 @@
 | 날짜 | 진행 상황 | 
 | -------- | -------- |
 | 23.11.11(토)     | Stack(스택)</br>Stack Interview</br>Stack Challenge</br> |
+| 23.11.12(일)     | Linked list(1) |
+| 23.11.30(목)     | Array |
+
 
 ## 📖 스터디 리스트
 
-### Stack
 - [231111 Stack](https://github.com/devKobe24/DataStructure/blob/main/contents/231111.md)
 - [231111 Stack Interview](https://github.com/devKobe24/DataStructure/blob/main/contents/231111-stack-interview.md)
 - [231111 Stack Challenge](https://github.com/devKobe24/DataStructure/blob/main/contents/231111-stack-challenge.md)
-
-### Linked List
 - [231112 Linked list(1)](https://github.com/devKobe24/DataStructure/blob/main/contents/231112-linkedlist(1).md)
+- [231130 Array](https://github.com/devKobe24/DataStructure/blob/main/contents/231130-array.md)
