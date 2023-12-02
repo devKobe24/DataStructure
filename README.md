@@ -1,6 +1,6 @@
 # Data Structure & Algorithm in Swift README
 
-> 본 스터디는 Kodeco의 Data Structure & Algorithm in Swift를 참고하여 공부한 내용을 정리한 스터디입니다.
+> 본 스터디는 Kodeco의 Data Structure & Algorithm in Swift와 문제 풀이를 학습한 내용을 정리한 스터디입니다.
 
 ## 목차 📚
 
