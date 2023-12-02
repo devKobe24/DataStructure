@@ -21,6 +21,7 @@
 | 23.11.11(토)     | Stack(스택)</br>Stack Interview</br>Stack Challenge</br> |
 | 23.11.12(일)     | Linked list(1) |
 | 23.11.30(목)     | Array |
+| 23.12.02(토)     | 2023 KAKAO BLIND RECRUITMENT - 미로탈출 명령어 |
 
 
 ## 📖 스터디 리스트
@@ -30,3 +31,4 @@
 - [231111 Stack Challenge](https://github.com/devKobe24/DataStructure/blob/main/contents/231111-stack-challenge.md)
 - [231112 Linked list(1)](https://github.com/devKobe24/DataStructure/blob/main/contents/231112-linkedlist(1).md)
 - [231130 Array](https://github.com/devKobe24/DataStructure/blob/main/contents/231130-array.md)
+- [231201 2023 KAKAO BLIND RECRUITMENT - 미로탈출 명령어](https://github.com/devKobe24/DataStructure/blob/main/contents/231202-23kakao-maze.md)
