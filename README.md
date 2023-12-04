@@ -23,6 +23,7 @@
 | 23.11.30(목)     | Array |
 | 23.12.02(토)     | 2023 KAKAO BLIND RECRUITMENT - 미로탈출 명령어 |
 | 23.12.03(일)     | 자료구조와 알고리즘 |
+| 23.12.04(월)     | DFS |
 
 
 ## 📖 스터디 리스트
@@ -34,3 +35,4 @@
 - [231130 Array](https://github.com/devKobe24/DataStructure/blob/main/contents/231130-array.md)
 - [231201 2023 KAKAO BLIND RECRUITMENT - 미로탈출 명령어](https://github.com/devKobe24/DataStructure/blob/main/contents/231202-23kakao-maze.md)
 - [231203 자료구조와 알고리즘](https://github.com/devKobe24/DataStructure/blob/main/contents/231203-howTo.md)
+- [231204 DFS](https://github.com/devKobe24/DataStructure/blob/main/contents/231204-DFS-Stack.md)
