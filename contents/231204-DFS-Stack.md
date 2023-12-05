@@ -251,3 +251,258 @@ public protocol Collection<Element>: Sequence {
 이는 **`Array`** 에서 사용하는 **`isEmpty`** 와 동일한 개념입니다.
 
 **`Array`** 는 **`Collection`** 프로토콜을 준수하기 때문에, **`Collection`** 에 정의된 **`isEmpty`** 속성을 상속받아 사용합니다.
+
+---
+
+# Depth-First Search (DFS) - Stack Edition 🧩
+
+## ✅🤔 What is Depth-First Search (DFS)?
+
+DFS, or Depth-First Search, is one of the algorithms used to visit all nodes in a graph or tree structure.
+
+This method employs backtracking to search in a depth-first manner.
+
+### ✅🧩 Key Features and Working Mechanism of Depth-First Search (DFS)
+
+1. **Selecting a Starting Node**: Choose the node where you want to start the search.
+
+2. **Exploring Adjacent Nodes**: From the current node, select any adjacent node that has not yet been visited.
+
+3. **Depth-First Exploration**: Use the chosen adjacent node as the new current node and repeat the process. Continue this depth-first exploration.
+
+4. **Backtracking**: If there are no more adjacent nodes to explore, return to the previous node (backtrack) and search different paths.
+
+5. **Visiting All Nodes**: Repeat this process until all nodes have been visited.
+
+DFS is particularly useful for finding specific paths or cycles in complex structures and is used in various fields such as maze exploration, puzzle games, and network analysis.
+
+While DFS is a simple yet powerful search algorithm, it can use a significant amount of memory during the search process and can take a long time to find the deepest node.
+
+## ✅1️⃣ Data Structures Used in Depth-First Search (DFS).
+
+### 🧩 1. Stack
+The core data structure of DFS, where nodes are pushed onto the stack as they are visited,
+and nodes are popped off the stack for further exploration when there are no more children nodes to explore.
+The stack operates on a LIFO (Last In, First Out) principle, making it suitable for continuing the search from the most recently visited node in DFS.
+
+## ✅2️⃣ Stack in DFS
+
+### 🤔 Why is the Stack data structure central in DFS?
+
+The reason why the Stack is a core data structure in DFS (Depth-First Search) lies in its structure and method of exploration.
+
+The purpose of DFS is to explore as deeply as possible along one path and then, when no further paths are available, to backtrack to a previous junction to explore different paths.
+This method of exploration aligns well with the LIFO (Last In, First Out) characteristic of a stack.
+
+### 🤔 Why do the LIFO feature of Stack and DFS match well?
+
+**1. Depth-First Exploration.**
+
+DFS continuously goes deeper into adjacent nodes from the current node.
+Stacks allow this depth to be achieved by stacking nodes continually.
+
+**2. Support for Backtracking.**
+
+When no further nodes to explore are available, or a specific condition is met, stacks facilitate easy backtracking to the last visited node.
+This is due to the principle of LIFO, where the most recently added element is removed first.
+
+**3. Recording and Restoring Paths.**
+
+Storing paths in the stack helps in recording the current exploration path and, if needed, easily reverting to a previous state.
+
+**4. An Alternative to Recursive Calls.**
+
+In practice, recursive implementations of DFS use the system stack.
+However, recursive calls can risk stack overflow, so iterative implementations using an explicit stack can mitigate this risk.
+
+**5. Summary.**
+
+Stacks effectively support the depth-first exploration and backtracking of DFS.
+They allow recording the path being explored and easily reverting to a previous state, enhancing the algorithm's efficiency and simplicity.
+
+## ✅3️⃣ Dissecting Stack 1.
+
+```swift
+struct Stack<Element> {
+    private var elements = [Element]()
+    
+    mutating func push(_ element: Element) {
+        elements.append(element)
+    }
+    
+    mutating func pop() -> Element? {
+        return elements.popLast()
+    }
+    
+    func peek() -> Element? {
+        return elements.last
+    }
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    var count: Int {
+        return elements.count
+    }
+}
+```
+
+A stack is essentially a data structure based on an array,
+mainly providing basic operations like **`push`, `pop`, `peek`, `isEmpty`**.
+
+The above stack implementation uses generics to store elements of various types.
+- **`push`** method adds a new element to the top of the stack.
+- **`pop`** method removes and returns the element from the top of the stack.
+- **`peek`** method allows viewing the top element without removing it.
+- **`isEmpty`** checks whether the stack is empty.
+- **`count`** property lets you see the number of elements stored in the stack.
+
+## ✅4️⃣ Dissecting Stack 2.
+
+Stacks are fundamentally array-based data structures, as explained.
+
+Let’s take a look at how arrays are structured in the Swift standard library.
+
+Here’s the [Swift standard library - Array code](https://github.com/apple/swift/blob/main
+
+/stdlib/public/core/Array.swift).
+
+It's really vast if you go in and see, hehe.
+
+### ✅ 4.1 `append(_:)` Method.
+
+```swift
+@inlinable
+@_semantics("array.append_element")
+@_effects(notEscaping self.value**)
+public mutating func append(_ newElement: __owned Element) {
+    // Separating uniqueness check and capacity check allows hoisting the
+    // uniqueness check out of a loop.
+    _makeUniqueAndReserveCapacityIfNotUnique()
+    let oldCount = _buffer.mutableCount
+    _reserveCapacityAssumingUniqueBuffer(oldCount: oldCount)
+    _appendElementAssumeUniqueAndCapacity(oldCount, newElement: newElement)
+    _endMutation()
+}
+```
+
+**`append(_:)`** method adds a new element to the end of an array. It's equivalent to **`push`** operation in a stack.
+
+**This method performs the following operations**
+
+**1. `_makeUniqueAndReserveCapacityIfNotUnique()`**
+Ensures that the array content is unique and reserves capacity if needed.
+
+**2. `let oldCount = _buffer.mutableCount`**
+Stores the current number of elements in the array.
+
+**3. `_reserveCapacityAssumingUniqueBuffer(oldCount: oldCount)`**
+Reserves enough capacity for the new element.
+
+**4. `_appendElementAssumeUniqueAndCapacity(oldCount, newElement: newElement)`**
+Actually adds the new element to the end of the array.
+
+**5. `_endMutation()`**
+Completes the modifications.
+
+**This method provides a core function in Swift’s standard library for adding new elements to an `Array` type.**
+
+### ✅ 4.2 `removeLast()` Method.
+
+```swift
+// MARK: - Array.swift
+@inlinable
+@_semantics("array.mutate_unknown")
+@_effects(notEscaping self.value**)
+@_effects(escaping self.value**.class*.value** -> return.value**)
+public mutating func _customRemoveLast() -> Element? {
+    _makeMutableAndUnique()
+    let newCount = _buffer.mutableCount - 1
+    _precondition(newCount >= 0, "Can't removeLast from an empty Array")
+    let pointer = (_buffer.mutableFirstElementAddress + newCount)
+    let element = pointer.move()
+    _buffer.mutableCount = newCount
+    _endMutation()
+    return element
+}
+
+// MARK: - RangeReplaceableCollection.swift
+@inlinable
+@discardableResult
+public mutating func removeLast() -> Element {
+    _precondition(!isEmpty, "Can't remove last element from an empty collection")
+    
+    if let result = _customRemoveLast() { return result }
+    return remove(at: index(before: endIndex))
+}
+```
+**`removeLast()`** method removes and returns the last element of an array. It's equivalent to **`pop`** operation in a stack.
+
+1️⃣ In **`Array.swift`**, the **`_customRemoveLast()`** method performs the following operations.
+
+**1. `_makeMutableAndUnique()`**
+Makes the array mutable and unique.
+
+**2. `let newCount = _buffer.mutableCount - 1`**
+Calculates the new number of elements.
+
+**3. `_precondition(newCount >= 0, "Can't removeLast from an empty Array")`**
+Ensures that the array is not empty.
+
+**4. `let pointer = (_buffer.mutableFirstElementAddress + newCount)`**
+Calculates the address of the last element to be removed.
+
+**5. `let element = pointer.move()`**
+Removes and returns the value of that element.
+
+**6. `_buffer.mutableCount = newCount`**
+Updates the new size of the array.
+
+**7. `_endMutation()`**
+Completes the modifications.
+
+2️⃣ In **`RangeReplaceableCollection.swift`**, the **`removeLast()`** method performs the following operations.
+
+**1. `_precondition(!isEmpty, "Can't remove last element from an empty collection")`**
+Ensures the array is not empty. An empty array will cause a runtime error.
+
+**2. `if let result = _customRemoveLast() { return result }`**
+Calls the _customRemoveLast() method to remove the last element and return the result. 
+This method can handle internal optimizations or special cases.
+
+**3. `return remove(at: index(before: endIndex))`**
+If _customRemoveLast() is not available, uses the remove(at:) method to remove the last element. 
+Here, index(before: endIndex) calculates the index of the last element of the array.
+
+### ✅ 4.3 `isEmpty` Property
+
+```swift
+// MARK: - Collection.swift
+public protocol Collection<Element>: Sequence {  
+  /// A Boolean value indicating whether the collection is empty.
+  ///
+  /// When you need to check whether your collection is empty, use the
+  /// `isEmpty` property instead of checking that the `count` property is
+  /// equal to zero. For collections that don't conform to
+  /// `RandomAccessCollection`, accessing the `count` property iterates
+  /// through the elements of the collection.
+  ///
+  ///     let horseName = "Silver"
+  ///     if horseName.isEmpty {
+  ///         print("My horse has no name.")
+  ///     } else {
+  ///         print("Hi ho, \(horseName)!")
+  ///     }
+  ///     // Prints "Hi ho, Silver!"
+  ///
+  /// - Complexity: O(1)
+  var isEmpty: Bool { get }
+}
+```
+
+The above `isEmpty` property is defined as part of Swift's `Collection` protocol. This `isEmpty` property is applicable to all types that implement the `Collection` protocol, such as `Array, Set, Dictionary, String`, and other collection types.
+
+The `isEmpty` property of the `Collection` protocol indicates whether the collection is empty, checking a condition equivalent to `count == 0`. This is the same concept as the `isEmpty` used in `Array`.
+
+Since `Array` conforms to the `Collection` protocol, it inherits and utilizes the `isEmpty` property defined in `Collection`.
